@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&display=swap');
+
+*, body, div, span, h1, h2, h3, h4, h5, button, input, textarea, p, a, ul, li, ol, dl, dt, dd, img, form, fieldset, legend, table, tr, th, td, article, aside, footer, header, nav, section, blockquote, figure, figcaption, details, summary, main, menu, menuitem, progress, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;;
+}
