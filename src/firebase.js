@@ -3,23 +3,19 @@ import {
   getFirestore,
   collection,
   addDoc,
-  getDocs,
   doc,
   getDoc,
-  query,
-  where,
-  setDoc,
-  deleteDoc } from "firebase/firestore";
+  } from "firebase/firestore";
 
 // Your web app's Firebase configuration  
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD4FOfhnN9URQqb1KKv-rtoh1pLlzp3abI",
-  authDomain: "greydive-challenge-46313.firebaseapp.com",
-  projectId: "greydive-challenge-46313",
-  storageBucket: "greydive-challenge-46313.appspot.com",
-  messagingSenderId: "625571615728",
-  appId: "1:625571615728:web:8da601e4ef1b276b70c335"
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_AUTH_DOMAIN,
+  projectId: process.env.REACT_PROJECT_ID ,
+  storageBucket: process.env.REACT_STORAGE_BUCKET ,
+  messagingSenderId: process.env.REACT_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_ID
 };
 
 // Initialize Firebase
@@ -35,7 +31,7 @@ export const getUser = async (userId) => {
     console.log("Document data:", docSnap.data());
     return docSnap.data()
   } else {
-    console.log("No such document!");
+    console.log("El usuario no existe");
   }
 }
 

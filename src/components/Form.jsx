@@ -19,31 +19,31 @@ const Form = () => {
     const errors = {};
     //Name
     if (!values.full_name) {
-      errors.full_name = "Required";
+      errors.full_name = "Este campo es necesario";
     } else if (values.full_name.length > 30) {
-      errors.full_name = "Must be 30 characters or less";
+      errors.full_name = "Deben ser 30 caracteres o menos";
     } else if (values.full_name.length < 3) {
-      errors.full_name = "Must be 3 characters or more";
+      errors.full_name = "Deben ser 3 caracteres o mas";
     } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/i.test(values.full_name)) {
-      errors.full_name = "Invalid name";
+      errors.full_name = "Nombre invalido";
     }
     //Email
     if (!values.email) {
-      errors.email = "Required";
+      errors.email = "Este campo es necesario";
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
+      errors.email = "Email invalido";
     }
     //Birth date
     if (!values.birth_date) {
-      errors.birth_date = "Required";
+      errors.birth_date = "Este campo es necesario";
     }
     //Country of origin
     if (!values.country_of_origin) {
-      errors.country_of_origin = "Required";
+      errors.country_of_origin = "Este campo es necesario";
     }
     //Terms and conditions
     if (!values.terms_and_conditions) {
-      errors.terms_and_conditions = "Required";
+      errors.terms_and_conditions = "Este campo es necesario";
     }
     return errors;
   };
@@ -83,6 +83,8 @@ const Form = () => {
                       onBlur={formik.handleBlur}
                       value={formik.values[item.name]}
                       required={item.required}
+                      max='2018-12-31'
+                      min='1920-01-01'
                       />
                     </span>
                   {formik.touched[item.name] && formik.errors[item.name] ? (
@@ -295,6 +297,7 @@ const Modal = styled.div`
     width: 50px;
     height: 50px;
     animation: spin 2s infinite linear;
+    filter: invert(1);
   }
   @keyframes spin {
     from {transform:rotate(0deg);}

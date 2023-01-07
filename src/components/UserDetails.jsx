@@ -7,15 +7,22 @@ import loadIcon from "../assets/load-icon.png";
 const UserDetails = () => {
 
   const { userId } = useParams();
+
+  const [perfil, setPerfil] = useState('');
   const [userDetails, setUserDetails] = useState(null);
+  function capitalizarPrimeraLetra(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
   useEffect(() => {
     getUser(userId)
       .then((res) => {
         setUserDetails(res);
+        setPerfil('Perfil')
       })
       .catch((err) => {
         console.log(err);
+        setPerfil('El usuario no existe')
       }
     );
   }, [ userId ]);
@@ -28,24 +35,21 @@ const UserDetails = () => {
         <h1>GREYDIVE</h1>
         <h2>Challenge</h2>
       </span>
-      <div className="datos">
-        <h3>Perfil</h3>
+      <div className="datos" style={{display: perfil === '' ? 'none' : 'flex'}}>
+
+        <h3>{perfil}</h3>
         { userDetails ? (
           <span>
-            <p className="detalles">Nombre: {userDetails.full_name}</p>
-            <p className="detalles">Email: {userDetails.email}</p>
-            <p className="detalles">Nacimiento: {userDetails.birth_date}</p>
-            <p className="detalles">Pais: {userDetails.country_of_origin}</p>
+            <p className="detalles"><strong>Nombre:</strong> {capitalizarPrimeraLetra(userDetails.full_name)}</p>
+            <p className="detalles"><strong>Email:</strong> {userDetails.email}</p>
+            <p className="detalles"><strong>Nacimiento:</strong> {userDetails.birth_date}</p>
+            <p className="detalles"><strong>Pais:</strong> {capitalizarPrimeraLetra(userDetails.country_of_origin)}</p>
           </span>
-          ) : 
-          <Modal>
-            <img src={loadIcon} className='load-icon' />
-            <p className="texto">No cierre la pagina, tarda unos segundos...</p>
-          </Modal>}
-          {/* <Modal>
-            <p className="texto">No cierre la pagina, tarda unos segundos...</p>
-            <img src={loadIcon} className='load-icon' />
-          </Modal> */}
+          ) 
+          : perfil === 'El usuario no existe' ? null 
+          : <Modal>
+              <img src={loadIcon} className='load-icon' />
+            </Modal> }
         </div>
     </Container>
   );
@@ -74,12 +78,14 @@ const Container = styled.div`
       letter-spacing: 1px;
       font-weight: 800;
       color: #f2f2f2;
+      text-shadow: 4px 4px 10px #454545;
     }
     h2 {
       font-size: 24px;
       letter-spacing: 2px;
       font-weight: 600;
       color: #f2f2f2;
+      text-shadow: 4px 4px 10px #454545;
     }
   }
   .datos {
@@ -87,18 +93,23 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 320px;
+    width: 450px;
     height: auto;
-    padding: 20px 0 20px 30px;
+    padding: 30px;
     border-radius: 20px;
     background-color: #f2f2f2;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    @media (max-width: 768px) {
+      width: 90%;
+    }
     h3 {
       font-size: 24px;
       font-weight: 600;
       color: #333;
       margin: 10px 0;
       text-align: left;
+      text-align: center;
+      width: 100%;
     }
     span{
       display: flex;
@@ -132,16 +143,18 @@ const Modal = styled.div`
   background-color: rgba(0,0,0,0.5);
   z-index: 100;
   .texto {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 400;
     color: #f2f2f2;
-    margin: 10px 0;
+    margin: 20px 0;
     text-align: center;
+    letter-spacing: 1px;
   }
   .load-icon {
-    margin-top: 50px;
+    margin-top: 20px;
     width: 50px;
     height: 50px;
+    filter: invert(1);
     animation: spin 2s infinite linear;
   }
   @keyframes spin {
