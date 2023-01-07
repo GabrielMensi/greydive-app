@@ -59,7 +59,6 @@ const Form = () => {
       validate,
       onSubmit: (values) => {
         addUser(values, setLoading, setSucess, setUserId);
-        console.log(values);
         formik.resetForm();
       },
     });

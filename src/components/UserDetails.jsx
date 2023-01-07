@@ -10,6 +10,7 @@ const UserDetails = () => {
 
   const [perfil, setPerfil] = useState('');
   const [userDetails, setUserDetails] = useState(null);
+  
   function capitalizarPrimeraLetra(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -27,7 +28,6 @@ const UserDetails = () => {
     );
   }, [ userId ]);
 
-  {userDetails ? console.log(userDetails) : console.log('cargando...')}
 
   return (
     <Container>
@@ -35,9 +35,10 @@ const UserDetails = () => {
         <h1>GREYDIVE</h1>
         <h2>Challenge</h2>
       </span>
-      <div className="datos" style={{display: perfil === '' ? 'none' : 'flex'}}>
-
-        <h3>{perfil}</h3>
+      <div 
+        className="datos" 
+        style={{backgroundColor: perfil === '' ? 'transparent' : '#f2f2f2', boxShadow: perfil === '' ? 'none' : '0 0 10px rgba(0,0,0,0.2)' }}>
+        <h3 style={{display: perfil === '' ? 'none' : 'block'}}>{perfil}</h3>
         { userDetails ? (
           <span>
             <p className="detalles"><strong>Nombre:</strong> {capitalizarPrimeraLetra(userDetails.full_name)}</p>
@@ -107,7 +108,6 @@ const Container = styled.div`
       font-weight: 600;
       color: #333;
       margin: 10px 0;
-      text-align: left;
       text-align: center;
       width: 100%;
     }

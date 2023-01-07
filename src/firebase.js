@@ -28,7 +28,6 @@ export const getUser = async (userId) => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
     return docSnap.data()
   } else {
     console.log("El usuario no existe");
@@ -48,7 +47,6 @@ export async function addUser (values, setloading, setSucces, setUserId) {
     setUserId(docRef.id)
     setloading(false);
     setSucces(true);
-    console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
