@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Form from './components/form'
+import Form from './components/Form'
 import UserDetails from './components/UserDetails'
 
 function App() {
