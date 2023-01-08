@@ -1,7 +1,11 @@
+//REACT
 import styled from "styled-components";
 import React, {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+//REACT ROUTER
+import { NavLink, useParams } from "react-router-dom";
+//FIREBASE
 import { getUser } from "../firebase";
+//ASSETS
 import loadIcon from "../assets/load-icon.png";
 
 const UserDetails = () => {
@@ -52,6 +56,12 @@ const UserDetails = () => {
               <img src={loadIcon} className='load-icon' />
             </Modal> }
         </div>
+        <NavLink to='/' className='home-button'>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="home-icon" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+            <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+          </svg>
+</NavLink>
     </Container>
   );
 };
@@ -74,6 +84,7 @@ const Container = styled.div`
     width: 100%;
     height: 200px;
     padding: 20px;
+    margin-top: 20px;
     h1 {
       font-size: 48px;
       letter-spacing: 1px;
@@ -126,6 +137,33 @@ const Container = styled.div`
       margin: 10px 0;
       text-align: left;
       }
+    }
+  }
+  .home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: #580066;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      .home-icon {
+        fill: #f2f2f2;
+      }
+    }
+    .home-icon {
+      width: 30px;
+      height: 30px;
+      transition: all 0.3s ease;
+      fill: #CB0654;
     }
   }
 `

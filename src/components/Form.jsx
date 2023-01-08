@@ -1,13 +1,19 @@
+//REACT
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { items as itemsForm } from '../assets/db.json';
-import { useFormik } from 'formik';
-import loadIcon from '../assets/load-icon.png';
-import { addUser } from '../firebase';
+//REACT ROUTER
 import { NavLink } from 'react-router-dom';
+//FIREBASE
+import { addUser } from '../firebase';
+//FORMIK
+import { useFormik } from 'formik';
+//ASSETS
+import { items as itemsForm } from '../assets/db.json';
+import loadIcon from '../assets/load-icon.png';
 
 
 const Form = () => {
+  
   const [loading, setLoading] = useState(false);
   const [sucess, setSucess] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -36,6 +42,9 @@ const Form = () => {
     //Birth date
     if (!values.birth_date) {
       errors.birth_date = "Este campo es necesario";
+    }
+    if (values.birth_date > '2018-12-31') {
+      errors.birth_date = "Fecha no valida";
     }
     //Country of origin
     if (!values.country_of_origin) {
@@ -130,6 +139,7 @@ const Form = () => {
             </div>
           </Modal>
           }
+          
       </Container>
     )
 }
