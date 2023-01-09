@@ -6,17 +6,16 @@ import { NavLink } from 'react-router-dom';
 //FIREBASE
 import { addUser } from '../firebase';
 //FORMIK
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
 //ASSETS
 import { items as itemsForm } from '../assets/db.json';
 import loadIcon from '../assets/load-icon.png';
 
 
-const Form = () => {
+const Form = ({ setUserId }) => {
   
   const [loading, setLoading] = useState(false);
   const [sucess, setSucess] = useState(false);
-  const [userId, setUserId] = useState(null);
 
 //DATA    
   const items = itemsForm;
@@ -68,7 +67,6 @@ const Form = () => {
       validate,
       onSubmit: (values) => {
         addUser(values, setLoading, setSucess, setUserId);
-        formik.resetForm();
       },
     });
     
@@ -135,7 +133,7 @@ const Form = () => {
           <Modal>
             <div>
               <h1>Usuario registrado con exito!</h1>
-              <NavLink to={`/${userId}`}><button>Aceptar</button></NavLink>
+              <NavLink to={`/${formik.values.full_name }`}><button>Aceptar</button></NavLink>
             </div>
           </Modal>
           }

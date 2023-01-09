@@ -2,15 +2,14 @@
 import styled from "styled-components";
 import React, {useState, useEffect} from "react";
 //REACT ROUTER
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 //FIREBASE
 import { getUser } from "../firebase";
 //ASSETS
 import loadIcon from "../assets/load-icon.png";
 
-const UserDetails = () => {
+const UserDetails = ({userId}) => {
 
-  const { userId } = useParams();
 
   const [perfil, setPerfil] = useState('');
   const [userDetails, setUserDetails] = useState(null);
